@@ -1,13 +1,13 @@
 # vue-tiptap
 
 ### To-do
-[ ] Insert hyperlink
-[ ] Insert image
-[ ] Embed video
-[ ] Insert section break
-[ ] Insert table
-[ ] Drag and drop node block
-[ ] Customize to-do node
+- [ ] Insert hyperlink
+- [ ] Insert image
+- [ ] Embed video
+- [ ] Insert section break
+- [ ] Insert table
+- [ ] Drag and drop node block
+- [ ] Customize to-do node
 
 ## Project setup
 ```
