@@ -131,26 +131,12 @@
 </template>
 
 <script>
-import Icon from '@/components/Icon'
 import { Editor, EditorContent, EditorFloatingMenu, EditorMenuBubble } from 'tiptap'
-import {
-	Blockquote,
-	BulletList,
-	CodeBlock,
-	HardBreak,
-	Heading,
-	ListItem,
-	OrderedList,
-	TodoItem,
-	TodoList,
-  Bold,
-  Strike,
-	Code,
-	Italic,
-	Link,
-	Underline,
-	History,
-} from 'tiptap-extensions'
+import { Blockquote, Bold, BulletList, Code, CodeBlock,
+	HardBreak, Heading, History, Italic, Link, ListItem,
+	OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
+import TodoItem from '@/components/TodoItem'
+import Icon from '@/components/Icon'
 
 export default {
 	components: {

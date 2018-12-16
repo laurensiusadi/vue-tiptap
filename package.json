@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "tiptap": "1.4.0",
+    "tiptap-commands": "^1.2.0",
     "tiptap-extensions": "1.4.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
