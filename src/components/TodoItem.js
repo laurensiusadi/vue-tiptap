@@ -16,11 +16,18 @@ export default class TodoItem extends Node {
             done: !this.node.attrs.done,
           })
         },
+        onEndDateChange(e) {
+          console.log(e.target.value)
+          this.updateAttrs({
+            endDate: e.target.value
+          })
+        }
       },
       template: `
-        <li data-type="todo_item" :data-done="node.attrs.done.toString()">
+        <li data-type="todo_item" :data-done="node.attrs.done.toString()" :data-end-date="node.attrs.endDate">
           <span class="todo-checkbox" contenteditable="false" @click="onChange"></span>
           <div class="todo-content" ref="content" :contenteditable="editable.toString()"></div>
+          <input type="date" class="todo-end-date" :value="node.attrs.endDate" @input="onEndDateChange"/>
         </li>
       `,
     }
@@ -32,15 +39,19 @@ export default class TodoItem extends Node {
         done: {
           default: false,
         },
+        endDate: {
+          default: null
+        }
       },
       draggable: true,
       content: 'paragraph',
       toDOM(node) {
-        const { done } = node.attrs
+        const { done, endDate } = node.attrs
 
         return ['li', {
             'data-type': 'todo_item',
             'data-done': done.toString(),
+            'data-end-date': endDate
           },
           ['span', { class: 'todo-checkbox', contenteditable: 'false' }],
           ['div', { class: 'todo-content' }, 0],
@@ -51,6 +62,7 @@ export default class TodoItem extends Node {
         tag: '[data-type="todo_item"]',
         getAttrs: dom => ({
           done: dom.getAttribute('data-done') === 'true',
+          endDate: dom.getAttribute('data-end-date')
         }),
       }],
     }

@@ -52,6 +52,33 @@
           <icon name="code" />
         </button>
 
+        <button
+          class="menububble__button"
+          :class="{ 'is-active': isActive.bullet_list() }"
+          @click="commands.bullet_list"
+          title="Bullet List"
+        >
+          <icon name="ul" />
+        </button>
+
+        <button
+          class="menububble__button"
+          :class="{ 'is-active': isActive.ordered_list() }"
+          @click="commands.ordered_list"
+          title="Number List"
+        >
+          <icon name="ol" />
+        </button>
+        
+        <button
+          class="menububble__button"
+          :class="{ 'is-active': isActive.todo_list() }"
+          @click="commands.todo_list"
+          title="Todo List"
+        >
+          <icon name="checklist" />
+        </button>
+
       </div>
     </editor-menu-bubble>
 		<editor-floating-menu :editor="editor">
@@ -186,7 +213,7 @@ export default {
 					<li data-type="todo_item" data-done="true">
 						Buy meat
 					</li>
-					<li data-type="todo_item" data-done="true">
+					<li data-type="todo_item" data-done="true" data-end-date="2019-03-06">
 						Buy milk
 					</li>
 					<li data-type="todo_item" data-done="false">
