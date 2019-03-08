@@ -162,7 +162,7 @@ import { Editor, EditorContent, EditorFloatingMenu, EditorMenuBubble } from 'tip
 import { Blockquote, Bold, BulletList, Code, CodeBlock,
 	HardBreak, Heading, History, Italic, Link, ListItem,
 	OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
-import TodoItem from '@/components/TodoItem'
+import TodoItem from '@/components/editor/TodoItem'
 import Icon from '@/components/Icon'
 
 export default {
