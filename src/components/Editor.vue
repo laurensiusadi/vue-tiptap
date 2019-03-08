@@ -161,10 +161,9 @@
 import { Editor, EditorContent, EditorFloatingMenu, EditorMenuBubble } from 'tiptap'
 import { Blockquote, Bold, BulletList, Code, CodeBlock,
 	HardBreak, Heading, History, Italic, Link, ListItem,
-  OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
+  OrderedList, Strike, TodoList, Underline, TodoItem } from 'tiptap-extensions'
 import IframeBlock from '@/components/editor/IframeBlock'
 import EventBlock from '@/components/editor/EventBlock'
-import TodoItem from '@/components/editor/TodoItem'
 import Icon from '@/components/Icon'
 
 export default {
