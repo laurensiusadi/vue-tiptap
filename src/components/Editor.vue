@@ -52,6 +52,15 @@
           <icon name="code" />
         </button>
 
+        <button
+          class="menububble__button"
+          :class="{ 'is-active': isActive.embedVideo() }"
+          @click="commands.embedVideo"
+          title="Embed Video"
+        >
+					Embed
+				</button>
+
       </div>
     </editor-menu-bubble>
 		<editor-floating-menu :editor="editor">
@@ -124,6 +133,24 @@
 					<icon name="code" />
 				</button>
 
+        <button
+          class="menubar__button"
+          :class="{ 'is-active': isActive.embedVideo() }"
+          @click="commands.embedVideo"
+          title="Embed Video"
+        >
+					Embed
+				</button>
+
+        <button
+          class="menubar__button"
+          :class="{ 'is-active': isActive.event() }"
+          @click="commands.event"
+          title="Event Block"
+        >
+					Event
+				</button>
+
       </div>
 		</editor-floating-menu>
 		<editor-content class="editor__content" :editor="editor"/>
@@ -134,8 +161,10 @@
 import { Editor, EditorContent, EditorFloatingMenu, EditorMenuBubble } from 'tiptap'
 import { Blockquote, Bold, BulletList, Code, CodeBlock,
 	HardBreak, Heading, History, Italic, Link, ListItem,
-	OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
-import TodoItem from '@/components/TodoItem'
+  OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
+import IframeBlock from '@/components/editor/IframeBlock'
+import EventBlock from '@/components/editor/EventBlock'
+import TodoItem from '@/components/editor/TodoItem'
 import Icon from '@/components/Icon'
 
 export default {
@@ -170,7 +199,9 @@ export default {
 				new Italic(),
 				new Link(),
 				new Underline(),
-				new History(),
+        new History(),
+        new IframeBlock(),
+        new EventBlock(),
 			],
 			content: `
 				<h2>
@@ -192,7 +223,11 @@ export default {
 					<li data-type="todo_item" data-done="false">
 						Call mom
 					</li>
-				</ul>
+        </ul>
+        <p>Content</p>
+        <embedVideo src="https://www.youtube.com/embed/GVt2j_TWLaA" frameborder="0" allowfullscreen></embedVideo>
+        <p></p>
+        <event></event>
 			`,
 		})
 	},
