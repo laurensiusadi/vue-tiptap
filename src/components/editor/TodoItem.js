@@ -18,17 +18,21 @@ export default class TodoItem extends Node {
         done: {
           default: false,
         },
+        endDate: {
+          default: null
+        }
       },
       draggable: true,
       content: 'paragraph',
       toDOM: node => {
-        const { done } = node.attrs
+        const { done, endDate } = node.attrs
 
         return [
           'li',
           {
             'data-type': this.name,
             'data-done': done.toString(),
+            'data-end-date' : endDate
           },
           ['span', { class: 'todo-checkbox', contenteditable: 'false' }],
           ['div', { class: 'todo-content' }, 0],
@@ -39,6 +43,7 @@ export default class TodoItem extends Node {
         tag: `[data-type="${this.name}"]`,
         getAttrs: dom => ({
           done: dom.getAttribute('data-done') === 'true',
+          endDate: dom.getAttribute('data-end-date'),
         }),
       }],
     }

@@ -3,15 +3,34 @@
     <span class="todo-checkbox" contenteditable="false" @click="onChange"></span>
     <div class="todo-content" ref="content" :contenteditable="editable.toString()"></div>
     <div class="todo-actions" contenteditable="false">
-      <button @click="setDate">Date</button>
+      <button v-if="!endDate && !editDate" @click="setDate">Date</button>
+      <datepicker v-if="endDate || editDate" name="startDatePicker" :typeable="true" v-model="endDate"></datepicker>
       <button @click="deleteNode" style="color: red">Del</button>
     </div>
   </li>
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker'
+
 export default {
+  components: { Datepicker },
   props: ['node', 'updateAttrs', 'editable', 'view', 'getPos'],
+  data() {
+    return {
+      editDate: false,
+    }
+  },
+  computed: {
+    endDate: { 
+      get() {
+        return this.node.attrs.endDate
+      },
+      set(endDate) {
+        this.updateAttrs({ endDate })
+      }
+    }
+  },
   methods: {
     onChange() {
       this.updateAttrs({
@@ -19,8 +38,8 @@ export default {
       })
     },
     setDate() {
-      console.log('setDate', this.node.schema)
-      
+      this.editDate = true
+
     },
     deleteNode() {
       // make a prosemirror transaction
@@ -34,7 +53,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .todo {
   padding: 2px 8px;
   &:hover {
@@ -58,6 +77,18 @@ export default {
     &:hover {
       color: #000000;
       background-color: rgba(0,0,0,.05)
+    }
+  }
+  .vdp-datepicker {
+    height: 20px;
+    white-space: normal;
+    margin-right: 8px;
+    input {
+      line-height: 20px;
+      width: 90px;
+      text-align: right;
+      top: -4px;
+      position: relative;
     }
   }
 }
