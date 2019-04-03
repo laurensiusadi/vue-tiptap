@@ -3,9 +3,23 @@
     <span class="todo-checkbox" contenteditable="false" @click="onChange"></span>
     <div class="todo-content" ref="content" :contenteditable="editable.toString()"></div>
     <div class="todo-actions" contenteditable="false">
-      <button v-if="!endDate && !editDate" @click="setDate">Date</button>
-      <datepicker v-if="endDate || editDate" name="startDatePicker" :typeable="true" v-model="endDate"></datepicker>
-      <button @click="deleteNode" style="color: red">Del</button>
+      <datepicker
+        v-if="endDate || editDate"
+        name="endDatePicker"
+        ref="datepicker"
+        :calendar-button="true"
+        calendar-button-icon="far fa-calendar-alt"
+        :clear-button="true"
+        clear-button-icon="far fa-calendar-times"
+        @cleared="onDatepickerCleared"
+        v-model="endDate"
+      />
+      <button class="btn" title="Set Date" v-if="!endDate && !editDate" @click="setDate">
+        <i class="far fa-calendar"></i>
+      </button>
+      <button class="btn" title="Delete To-do" @click="deleteNode">
+        <i class="fa fa-times"></i>
+      </button>
     </div>
   </li>
 </template>
@@ -39,8 +53,15 @@ export default {
     },
     setDate() {
       this.editDate = true
-
+      this.$nextTick(() => {
+        this.$refs.datepicker.showCalendar()
+        this.$refs.datepicker.$el.querySelector('input').focus()
+      })
     },
+    onDatepickerCleared() {
+      this.editDate = false
+    },
+    // TODO: onDatepickerBlur https://github.com/charliekassel/vuejs-datepicker/issues/493
     deleteNode() {
       // make a prosemirror transaction
       // which available on editor node
@@ -58,37 +79,54 @@ export default {
   padding: 2px 8px;
   &:hover {
     background-color: rgba(0,0,0,.03);
+    .btn, .vdp-datepicker__clear-button {
+      opacity: 1;
+    }
   }
 }
 .todo-actions {
   display: flex;
   align-items: center;
-  button {
+  .btn {
     border: 0;
     border-radius: 4px;
     padding: 4px 8px;
-    font-size: 10px;
+    font-size: 16px;
     letter-spacing: 1px;
     font-weight: 600;
     text-transform: uppercase;
     background-color: transparent;
     margin-left: 6px;
-    color: #777777;
+    color: #AAAAAA;
+    opacity: 0;
     &:hover {
       color: #000000;
-      background-color: rgba(0,0,0,.05)
     }
   }
+  
+  .vdp-datepicker__clear-button {
+    opacity: 0;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #AAAAAA;
+    &:hover {
+      color: #000000;
+    }
+  }
+
+  .vdp-datepicker__calendar-button {
+    color: #000000;
+    font-size: 16px;
+  }
+
   .vdp-datepicker {
-    height: 20px;
     white-space: normal;
-    margin-right: 8px;
     input {
       line-height: 20px;
       width: 90px;
       text-align: right;
-      top: -4px;
-      position: relative;
+      background-color: transparent;
     }
   }
 }

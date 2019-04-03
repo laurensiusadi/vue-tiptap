@@ -36,6 +36,7 @@ export default class TodoItem extends Node {
           },
           ['span', { class: 'todo-checkbox', contenteditable: 'false' }],
           ['div', { class: 'todo-content' }, 0],
+          ['div', { class: 'todo-actions', contenteditable: 'false' }],
         ]
       },
       parseDOM: [{
