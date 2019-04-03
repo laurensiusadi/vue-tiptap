@@ -9,6 +9,7 @@
 </template>
 
 <style lang="scss" src="./assets/sass/main.scss"></style>
+<style lang="scss" src="./assets/sass/tooltip.scss"></style>
 <style lang="scss">
 #app {
   font-family: 'Segoe UI', sans-serif;
