@@ -1,9 +1,15 @@
 <template>
-  <li class="todo" :data-type="node.type.name" :data-done="node.attrs.done.toString()">
+  <li class="todo"
+    :data-block-id="node.attrs.blockId"
+    :data-type="node.type.name"
+    :data-done="node.attrs.done.toString()"
+    :data-end-date="node.attrs.endDate"
+  >
     <span class="todo-checkbox" contenteditable="false" @click="onChange"></span>
     <div class="todo-content" ref="content" :contenteditable="editable.toString()"></div>
     <div class="todo-actions" contenteditable="false">
       <datepicker
+        contenteditable="false"
         v-if="endDate || editDate"
         name="endDatePicker"
         ref="datepicker"
