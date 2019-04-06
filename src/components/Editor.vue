@@ -162,7 +162,7 @@ import { Editor, EditorContent, EditorFloatingMenu, EditorMenuBubble } from 'tip
 import { Blockquote, Bold, BulletList, Code, CodeBlock,
 	HardBreak, Heading, History, Italic, Link, ListItem,
 	OrderedList, Strike, TodoList, Underline } from 'tiptap-extensions'
-import TodoItem from '@/components/TodoItem'
+import TodoItem from '@/components/editor/TodoItem'
 import Icon from '@/components/Icon'
 
 export default {
@@ -197,7 +197,7 @@ export default {
 				new Italic(),
 				new Link(),
 				new Underline(),
-				new History(),
+        new History()
 			],
 			content: `
 				<h2>
@@ -207,7 +207,7 @@ export default {
 					Click into this text to see the menu. Click outside and the menu will disappear. It's like magic.
 				</p>
 				<ul data-type="todo_list">
-					<li data-type="todo_item" data-done="true">
+					<li data-block-id="32f1dff3-7033-4000-9009-a13e7be730d2" data-type="todo_item" data-done="true">
 						Buy beer
 					</li>
 					<li data-type="todo_item" data-done="true">
