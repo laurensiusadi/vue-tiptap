@@ -1,11 +1,6 @@
 <template>
   <div class="home">
-    <editor>
-      <!-- Add HTML to the scoped slot called `content` -->
-      <div slot="content" slot-scope="props">
-        <p>Hi, I'm just a boring paragraph</p>
-      </div>
-    </editor>
+    <editor></editor>
   </div>
 </template>
 
